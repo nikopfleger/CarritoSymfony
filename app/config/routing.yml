@@ -1,0 +1,5 @@
+carrito:
+    resource: "@CarritoBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

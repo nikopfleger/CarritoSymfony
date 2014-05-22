@@ -1,0 +1,64 @@
+{% extends "CarritoBundle:Carrito:layout.html.twig" %}
+{% block head %}
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="navBarHome">
+    	 <div class="container-fluid">
+     		<div class="navbar-header">
+     
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Catalogo</a></li>
+        <li><a href="../Controllers/cargarABMController.php" id="accesoABM">ABM</a></li>
+        </ul>
+    </div>
+  </div>
+  </div>
+  </nav>
+
+
+{% block titulo %}
+<title> Bienvenido a su carrito </title>
+{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="bordeCarrito">
+		<i class="fa fa-shopping-cart"></i> Carrito de <?php echo $nombre;?>
+		<table id="Carrito" class="elCarrito table table-hover table-condensed">
+		<thead>
+			<tr>
+			<th>Articulo</th>
+			<th>Cantidad</th>
+			<th>Precio</th>
+			<th>Total</th> <!--link-->
+		 	</tr>
+		</thead>
+<td class='total' colspan='4'>0</tr>
+
+</table>
+		 
+</div>
+<br>
+<br>
+<div class="catalogo">
+	<div style="text-align:left; font-size:18"> CATALOGO</div> 
+		<table id="Catalogo" class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Precio</th>
+				</tr>
+			</thead>
+			
+		</table>
+		
+	<ul class="pagination">
+		<li><a href="#" id="primeraPagina">&laquo;</a></li>	
+	</ul>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+
+{% endblock %}

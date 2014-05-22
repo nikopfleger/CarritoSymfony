@@ -1,0 +1,51 @@
+
+{% extends "CarritoBundle:Carrito:layout.html.twig" %}
+{% block head %}
+
+{% block titulo %}
+<title>Bienvenido</title>
+{% endblock %}
+{% endblock %}
+
+
+
+	
+{% block body %}	
+	<br>
+	<h2 style="text-align:center">Bienvenido</h2>
+	<br>
+	<form class="form-inline" action="{{ path('index_validarLogin') }}" method="POST" style="text-align:center">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputEmail2">Email address</label>
+    <input type="text" class="form-control" id="user" name="user" placeholder="Ingresar usuario.">
+  </div>
+  <br><br>
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputPassword2">Password</label>
+    <input type="password" class="form-control" id="pass" name="pass" placeholder="Ingresar clave.">
+  </div>
+  <br><br>
+  <button type="submit" class="btn btn-success" id="btnConfirmar">Ingresar</button>
+</form>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script src=" {{ asset("bundles/carrito/js/login.js") }}"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	var unLogin = new Login();
+	unLogin.urlLogin = "{{ path("index_validarLogin") }}"
+	unLogin.urlHome = "{{ path("index_home") }}"
+	unLogin.init();
+});
+
+</script>
+
+
+{% endblock %}
+
+
+
+
