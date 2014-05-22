@@ -25,7 +25,7 @@ class indexController extends Controller {
  * @Template()
  */
 	public function indexAction() {
-		return $this->render("CarritoBundle:Carrito:index.html.twig",array("ERROR" => "SI"));
+		return $this->render("CarritoBundle:Carrito:index.html.twig",array("ERROR" => ""));
 
 	}
 	
@@ -51,10 +51,10 @@ class indexController extends Controller {
 			$session->set("user", $nombre);
 			$session->set("articuloDAO",new ArticuloDAO());
 
-			return $this->forward("CarritoBundle:Home:index");
+			return $this->forward("CarritoBundle:Home:home");
 		}
 		else {
-			return $this->indexAction();
+			return $this->render("CarritoBundle:Carrito:index.html.twig",array("ERROR" => "SI"));
 		}
 		
 	

@@ -22,7 +22,7 @@
 
 {% block body %}
 <div class="bordeCarrito">
-		<i class="fa fa-shopping-cart"></i> Carrito de <?php echo $nombre;?>
+		<i class="fa fa-shopping-cart"></i> Carrito de {{ user }}
 		<table id="Carrito" class="elCarrito table table-hover table-condensed">
 		<thead>
 			<tr>
@@ -32,7 +32,7 @@
 			<th>Total</th> <!--link-->
 		 	</tr>
 		</thead>
-<td class='total' colspan='4'>0</tr>
+		<td class='total' colspan='4'>0</tr>
 
 </table>
 		 
@@ -40,7 +40,7 @@
 <br>
 <br>
 <div class="catalogo">
-	<div style="text-align:left; font-size:18"> CATALOGO</div> 
+	<div style="text-align:left; font-size:18"> <b>CATALOGO</b></div> 
 		<table id="Catalogo" class="table table-hover table-condensed">
 			<thead>
 				<tr>
@@ -48,11 +48,26 @@
 					<th>Precio</th>
 				</tr>
 			</thead>
-			
+		{% set i = 0 %}
+		{% for i in 0.. (articuloDAO.articulosXPagina-1) %}
+			{% if i < articuloDAO.listadoArticulos|length %}
+				{% set articulo = articuloDAO.listadoArticulos[i] %}
+				<tr><td>{{  articulo.nombre  }}</td>
+				<td>{{articulo.precioUnitario}}</td>
+				<td><a href='#' class='agregar'>Agregar</a>
+				<input type= 'hidden' name='id' value='{{ articulo.id }}'>
+				</td></tr>
+			{% endif %}			
+		{% endfor %}
 		</table>
 		
 	<ul class="pagination">
 		<li><a href="#" id="primeraPagina">&laquo;</a></li>	
+		{% set j=1 %}
+		{% for j in 1.. articuloDAO.numeroPaginas %}
+		 <li><a href='#' class='pagina' id='{{ j }}'>{{ j }}</a></li>
+		 {% endfor %}
+		 <li><a href='#' id='ultimaPagina' name='{{ j-1 }}'>&raquo;</a></li>			
 	</ul>
 </div>
 
@@ -61,4 +76,31 @@
 {% block javascript %}
 
 
+
+
+<script src=" {{ asset("bundles/carrito/js/home.js") }}"></script>
+<script type="text/javascript">
+		function parsearArrayArticulos(result) { 
+			 var string = "";
+					for (var i=0; i<result.articulos.length;i++)
+					{
+						string = string + "<tr><td>" +
+						result.articulos[i].nombre + 
+						"</td><td>" + result.articulos[i].precioUnitario +
+						"</td><td><a href='#' class='agregar'>Agregar</a>" + 
+						"<input type='hidden' name='id' value='" + 
+						result.articulos[i].id + "'> </td></tr>";
+					}
+					return string;
+		}
+		$(document).ready(function(e) {
+				var unHome = new Home();
+				unHome.urlCambiarPagina= "{{ path("home_cambiarPagina") }}"
+				unHome.init();
+// 				urlAgregar:"",
+// 				urlEliminar:"",			
+		});
+
+
+</script>
 {% endblock %}

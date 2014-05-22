@@ -27,32 +27,41 @@ class __TwigTemplate_77139a1d50f5017e233d61d3d9c032e38ff204d36930b2f475a954b050e
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 3
+    // line 5
     public function block_head($context, array $blocks = array())
     {
-        // line 4
+        // line 6
         echo "
 ";
-        // line 5
+        // line 7
         $this->displayBlock('titulo', $context, $blocks);
     }
 
     public function block_titulo($context, array $blocks = array())
     {
-        // line 6
+        // line 8
         echo "<title>Bienvenido</title>
 ";
     }
 
-    // line 13
+    // line 15
     public function block_body($context, array $blocks = array())
     {
-        echo "\t
-\t<br>
+        // line 16
+        echo "<br>
+";
+        // line 17
+        if (((isset($context["ERROR"]) ? $context["ERROR"] : $this->getContext($context, "ERROR")) == "SI")) {
+            // line 18
+            echo "<p class=\"bg-warning errorLogin\"><b>DATOS INCORRECTOS</b></p>
+";
+        }
+        // line 20
+        echo "\t<br>
 \t<h2 style=\"text-align:center\">Bienvenido</h2>
 \t<br>
 \t<form class=\"form-inline\" action=\"";
-        // line 17
+        // line 23
         echo $this->env->getExtension('routing')->getPath("index_validarLogin");
         echo "\" method=\"POST\" style=\"text-align:center\">
   <div class=\"form-group\">
@@ -71,25 +80,21 @@ class __TwigTemplate_77139a1d50f5017e233d61d3d9c032e38ff204d36930b2f475a954b050e
 ";
     }
 
-    // line 33
+    // line 39
     public function block_javascript($context, array $blocks = array())
     {
-        // line 34
+        // line 40
         echo "
 <script src=\" ";
-        // line 35
+        // line 41
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/carrito/js/login.js"), "html", null, true);
         echo "\"></script>
 <script type=\"text/javascript\">
 \$(document).ready(function(e) {
 \tvar unLogin = new Login();
 \tunLogin.urlLogin = \"";
-        // line 39
+        // line 45
         echo $this->env->getExtension('routing')->getPath("index_validarLogin");
-        echo "\"
-\tunLogin.urlHome = \"";
-        // line 40
-        echo $this->env->getExtension('routing')->getPath("index_home");
         echo "\"
 \tunLogin.init();
 });
@@ -112,6 +117,6 @@ class __TwigTemplate_77139a1d50f5017e233d61d3d9c032e38ff204d36930b2f475a954b050e
 
     public function getDebugInfo()
     {
-        return array (  92 => 40,  88 => 39,  81 => 35,  78 => 34,  75 => 33,  56 => 17,  48 => 13,  43 => 6,  37 => 5,  34 => 4,  31 => 3,);
+        return array (  97 => 45,  90 => 41,  87 => 40,  84 => 39,  65 => 23,  60 => 20,  56 => 18,  54 => 17,  51 => 16,  48 => 15,  43 => 8,  37 => 7,  34 => 6,  31 => 5,);
     }
 }

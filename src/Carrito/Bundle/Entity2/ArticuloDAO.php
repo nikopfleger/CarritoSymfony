@@ -23,6 +23,16 @@ class ArticuloDAO{
 		$this->listadoArticulos= array($art1,$art2,$art3,$art4,$art5,$art6,$art7,$art8,$art9,$art10);
 
 	}
+	
+	public function getarticulosXPagina()
+	{
+		return $this->articulosXPagina;
+	}
+	
+	public function getlistadoArticulos()
+	{
+		return $this->listadoArticulos;
+	}
 
 	public function articulosToJson() {
 		$array = array();
@@ -49,9 +59,9 @@ class ArticuloDAO{
 
 	}
 
-	public function getArticulos(){
-		return $this->listadoArticulos;
-	}
+// 	public function getArticulos(){
+// 		return $this->listadoArticulos;
+// 	}
 
 	public function getArticuloByID($id){
 		foreach($this->listadoArticulos as $articulo){

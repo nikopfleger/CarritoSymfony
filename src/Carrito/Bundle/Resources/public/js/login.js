@@ -4,7 +4,6 @@
  }
  		Login.prototype = {
 				urlLogin:"",
-				urlHome:"",
 				init: function() {
 					this.setupEvents();
 								

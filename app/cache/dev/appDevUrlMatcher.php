@@ -135,9 +135,14 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // index_home
+        // _home
         if ($pathinfo === '/home') {
-            return array (  '_controller' => 'Carrito\\Bundle\\Controller\\HomeController::indexAction',  '_route' => 'index_home',);
+            return array (  '_controller' => 'Carrito\\Bundle\\Controller\\HomeController::homeAction',  '_route' => '_home',);
+        }
+
+        // home_cambiarPagina
+        if ($pathinfo === '/cambiarPagina') {
+            return array (  '_controller' => 'Carrito\\Bundle\\Controller\\HomeController::cambiarPaginaAction',  '_route' => 'home_cambiarPagina',);
         }
 
         // index

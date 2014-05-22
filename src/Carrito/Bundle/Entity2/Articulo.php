@@ -8,6 +8,20 @@ class Articulo {
 	private $precioUnitario;
 	private $cantidad;
 	
+	public function getid() {
+		return $this->id;
+	}
+	
+	public function getnombre() {
+		return $this->nombre;
+	}
+	public function getprecioUnitario() {
+		return $this->precioUnitario;
+	}
+	public function getcantidad() {
+		return $this->cantidad;
+	}
+	
 	public function __construct($id,$nombreArticulo,$precioUnitario,$cantidad){
 		$this->id = $id;
 		$this->nombre = $nombreArticulo;

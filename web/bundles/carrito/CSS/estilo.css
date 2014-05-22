@@ -47,13 +47,11 @@ body
 
 .catalogo {
   width: 310px;
-  align:center;
   position:fixed;	
   margin-left:-150px; /* half of width */
   margin-top:-150px;  /* half of height */
   top:50%;
   left:30%;
-  text-align:center;
   border-style:solid;
   border-width:medium;
   border-color:green;
@@ -96,5 +94,12 @@ body
 .pagination {
 		color:green;
 		text-decoration:underline;
+}
+
+.errorLogin {
+	font-size: 18px;
+	text-align:center;
+	font-family: verdana;
+	
 }
 

@@ -1,5 +1,7 @@
 
 {% extends "CarritoBundle:Carrito:layout.html.twig" %}
+
+
 {% block head %}
 
 {% block titulo %}
@@ -10,7 +12,11 @@
 
 
 	
-{% block body %}	
+{% block body %}
+<br>
+{% if ERROR == "SI" %}
+<p class="bg-warning errorLogin"><b>DATOS INCORRECTOS</b></p>
+{% endif %}
 	<br>
 	<h2 style="text-align:center">Bienvenido</h2>
 	<br>
@@ -37,7 +43,6 @@
 $(document).ready(function(e) {
 	var unLogin = new Login();
 	unLogin.urlLogin = "{{ path("index_validarLogin") }}"
-	unLogin.urlHome = "{{ path("index_home") }}"
 	unLogin.init();
 });
 
