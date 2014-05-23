@@ -38,7 +38,10 @@ class __TwigTemplate_a1ca84ef51bad8aeeed228fb02c6de78d631fecd79b2c2013d5b83e1e61
           <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
       <ul class=\"nav navbar-nav\">
         <li class=\"active\"><a href=\"#\">Catalogo</a></li>
-        <li><a href=\"../Controllers/cargarABMController.php\" id=\"accesoABM\">ABM</a></li>
+        <li><a href=\"";
+        // line 10
+        echo $this->env->getExtension('routing')->getPath("home_cargar_ABM");
+        echo "\" id=\"accesoABM\">ABM</a></li>
         </ul>
     </div>
   </div>
@@ -139,23 +142,30 @@ class __TwigTemplate_a1ca84ef51bad8aeeed228fb02c6de78d631fecd79b2c2013d5b83e1e61
         $context["j"] = 1;
         // line 67
         echo "\t\t";
+        $context["a"] = (isset($context["j"]) ? $context["j"] : $this->getContext($context, "j"));
+        // line 68
+        echo "\t\t";
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable(range(1, $this->getAttribute((isset($context["articuloDAO"]) ? $context["articuloDAO"] : $this->getContext($context, "articuloDAO")), "numeroPaginas")));
         foreach ($context['_seq'] as $context["_key"] => $context["j"]) {
-            // line 68
+            // line 69
             echo "\t\t <li><a href='#' class='pagina' id='";
             echo twig_escape_filter($this->env, (isset($context["j"]) ? $context["j"] : $this->getContext($context, "j")), "html", null, true);
             echo "'>";
             echo twig_escape_filter($this->env, (isset($context["j"]) ? $context["j"] : $this->getContext($context, "j")), "html", null, true);
             echo "</a></li>
 \t\t ";
+            // line 70
+            $context["a"] = (isset($context["j"]) ? $context["j"] : $this->getContext($context, "j"));
+            // line 71
+            echo "\t\t ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['j'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 70
+        // line 72
         echo "\t\t <li><a href='#' id='ultimaPagina' name='";
-        echo twig_escape_filter($this->env, ((isset($context["j"]) ? $context["j"] : $this->getContext($context, "j")) - 1), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["a"]) ? $context["a"] : $this->getContext($context, "a")), "html", null, true);
         echo "'>&raquo;</a></li>\t\t\t
 \t</ul>
 </div>
@@ -163,41 +173,35 @@ class __TwigTemplate_a1ca84ef51bad8aeeed228fb02c6de78d631fecd79b2c2013d5b83e1e61
 ";
     }
 
-    // line 76
+    // line 78
     public function block_javascript($context, array $blocks = array())
     {
-        // line 77
+        // line 79
         echo "
 
 
 
 <script src=\" ";
-        // line 81
+        // line 83
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/carrito/js/home.js"), "html", null, true);
         echo "\"></script>
 <script type=\"text/javascript\">
-\t\tfunction parsearArrayArticulos(result) { 
-\t\t\t var string = \"\";
-\t\t\t\t\tfor (var i=0; i<result.articulos.length;i++)
-\t\t\t\t\t{
-\t\t\t\t\t\tstring = string + \"<tr><td>\" +
-\t\t\t\t\t\tresult.articulos[i].nombre + 
-\t\t\t\t\t\t\"</td><td>\" + result.articulos[i].precioUnitario +
-\t\t\t\t\t\t\"</td><td><a href='#' class='agregar'>Agregar</a>\" + 
-\t\t\t\t\t\t\"<input type='hidden' name='id' value='\" + 
-\t\t\t\t\t\tresult.articulos[i].id + \"'> </td></tr>\";
-\t\t\t\t\t}
-\t\t\t\t\treturn string;
-\t\t}
+
 \t\t\$(document).ready(function(e) {
 \t\t\t\tvar unHome = new Home();
 \t\t\t\tunHome.urlCambiarPagina= \"";
-        // line 98
+        // line 88
         echo $this->env->getExtension('routing')->getPath("home_cambiarPagina");
-        echo "\"
+        echo "\";
+\t\t\t\tunHome.urlAgregar= \" ";
+        // line 89
+        echo $this->env->getExtension('routing')->getPath("home_agregar_carrito");
+        echo "\" ;
+\t\t\t\tunHome.urlEliminar= \" ";
+        // line 90
+        echo $this->env->getExtension('routing')->getPath("home_eliminar_carrito");
+        echo "\";
 \t\t\t\tunHome.init();
-// \t\t\t\turlAgregar:\"\",
-// \t\t\t\turlEliminar:\"\",\t\t\t
 \t\t});
 
 
@@ -217,6 +221,6 @@ class __TwigTemplate_a1ca84ef51bad8aeeed228fb02c6de78d631fecd79b2c2013d5b83e1e61
 
     public function getDebugInfo()
     {
-        return array (  196 => 98,  176 => 81,  170 => 77,  167 => 76,  157 => 70,  146 => 68,  141 => 67,  139 => 66,  133 => 62,  126 => 60,  120 => 58,  115 => 56,  110 => 55,  107 => 54,  104 => 53,  99 => 52,  97 => 51,  68 => 25,  65 => 24,  62 => 23,  57 => 19,  51 => 18,  34 => 3,  31 => 2,);
+        return array (  202 => 90,  198 => 89,  194 => 88,  186 => 83,  180 => 79,  177 => 78,  167 => 72,  161 => 71,  159 => 70,  152 => 69,  147 => 68,  144 => 67,  142 => 66,  136 => 62,  129 => 60,  123 => 58,  118 => 56,  113 => 55,  110 => 54,  107 => 53,  102 => 52,  100 => 51,  71 => 25,  68 => 24,  65 => 23,  60 => 19,  54 => 18,  43 => 10,  34 => 3,  31 => 2,);
     }
 }

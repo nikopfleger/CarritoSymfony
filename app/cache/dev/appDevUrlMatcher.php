@@ -135,6 +135,26 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // ABM_indexABM
+        if ($pathinfo === '/indexABM') {
+            return array (  '_controller' => 'Carrito\\Bundle\\Controller\\ABMController::indexABMAction',  '_route' => 'ABM_indexABM',);
+        }
+
+        // abm_cargar_catalogo
+        if ($pathinfo === '/cargarCatalogo') {
+            return array (  '_controller' => 'Carrito\\Bundle\\Controller\\ABMController::cargarCatalogoAction',  '_route' => 'abm_cargar_catalogo',);
+        }
+
+        // abm_actualizar_catalogo
+        if ($pathinfo === '/actualizarCatalogo') {
+            return array (  '_controller' => 'Carrito\\Bundle\\Controller\\ABMController::actualizarCatalogoAction',  '_route' => 'abm_actualizar_catalogo',);
+        }
+
+        // abm_eliminar_catalogo
+        if ($pathinfo === '/eliminarCatalogo') {
+            return array (  '_controller' => 'Carrito\\Bundle\\Controller\\ABMController::eliminarCatalogoAction',  '_route' => 'abm_eliminar_catalogo',);
+        }
+
         // _home
         if ($pathinfo === '/home') {
             return array (  '_controller' => 'Carrito\\Bundle\\Controller\\HomeController::homeAction',  '_route' => '_home',);
@@ -143,6 +163,21 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // home_cambiarPagina
         if ($pathinfo === '/cambiarPagina') {
             return array (  '_controller' => 'Carrito\\Bundle\\Controller\\HomeController::cambiarPaginaAction',  '_route' => 'home_cambiarPagina',);
+        }
+
+        // home_agregar_carrito
+        if ($pathinfo === '/agregarcarrito') {
+            return array (  '_controller' => 'Carrito\\Bundle\\Controller\\HomeController::agregarACarritoAction',  '_route' => 'home_agregar_carrito',);
+        }
+
+        // home_eliminar_carrito
+        if ($pathinfo === '/eliminarcarrito') {
+            return array (  '_controller' => 'Carrito\\Bundle\\Controller\\HomeController::eliminarDeCarritoAction',  '_route' => 'home_eliminar_carrito',);
+        }
+
+        // home_cargar_ABM
+        if ($pathinfo === '/cargarabm') {
+            return array (  '_controller' => 'Carrito\\Bundle\\Controller\\HomeController::cargarABMAction',  '_route' => 'home_cargar_ABM',);
         }
 
         // index

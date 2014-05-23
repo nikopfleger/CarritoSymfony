@@ -12,7 +12,19 @@ function Home() {
 		init: function() {
 			this.setupEvents();
 		},
-
+		parsearArrayArticulos: function(result) { 
+			 var string = "";
+					for (var i=0; i<result.articulos.length;i++)
+					{
+						string = string + "<tr><td>" +
+						result.articulos[i].nombre + 
+						"</td><td>" + result.articulos[i].precioUnitario +
+						"</td><td><a href='#' class='agregar'>Agregar</a>" + 
+						"<input type='hidden' name='id' value='" + 
+						result.articulos[i].id + "'> </td></tr>";
+					}
+					return string;
+		},
 		setupEvents: function() {
 		var self = this;
 			
@@ -23,9 +35,8 @@ function Home() {
 						//CATALOGO TBODY APPEND
 						$.post(self.urlCambiarPagina,{pagina: 1})
 						.done(function(result) {
-//							var result = $.parseJSON(result);
 							$("#Catalogo tbody tr").remove();
-							$("#Catalogo tbody").append(parsearArrayArticulos(result));
+							$("#Catalogo tbody").append(self.parsearArrayArticulos(result));
 						})
 						.fail(function(result) {
 							alert("Error en el servidor");
@@ -39,9 +50,8 @@ function Home() {
 						//CATALOGO TBODY APPEND
 						$.post(self.urlCambiarPagina,{pagina: $(this).attr("name")})
 						.done(function(result) {
-//							var result = $.parseJSON(result);
 							$("#Catalogo tbody tr").remove();
-							$("#Catalogo tbody").append(parsearArrayArticulos(result));
+							$("#Catalogo tbody").append(self.parsearArrayArticulos(result));
 						})
 						.fail(function(result) {
 							alert("Error en el servidor");
@@ -59,7 +69,7 @@ function Home() {
 					.done(function(result) {
 						var result = result;
 						$("#Catalogo tbody tr").remove();
-						$("#Catalogo tbody").append(parsearArrayArticulos(result));
+						$("#Catalogo tbody").append(self.parsearArrayArticulos(result));
 					})
 					.fail(function(result) {
 						alert("Error en el servidor");
@@ -76,12 +86,12 @@ function Home() {
 					$("#Catalogo").on("click",".agregar", function(e) { 
 					e.preventDefault();
 					cantidadSolicitada = prompt("Ingrese cantidad");	
-					$.post("../Controllers/AgregarController.php",{cantidad: cantidadSolicitada, id:$(this).siblings().val(), idCompra: idCompra})
+					$.post(self.urlAgregar,{cantidad: cantidadSolicitada, id:$(this).siblings().val(), idCompra: self.idCompra})
 					.done(function(result) {
-						result = $.parseJSON(result);
+//						result = $.parseJSON(result);
 						precioAgregar = result.cantidad * result.precio;
 						$(".total").remove();		
-						$("#Carrito tbody").append("<tr id='"+ idCompra++  +"' ><td>" + 
+						$("#Carrito tbody").append("<tr id='"+ self.idCompra++  +"' ><td>" + 
 						result.nombre + 
 						"</td><td>" + 
 						result.cantidad + 
@@ -101,11 +111,8 @@ function Home() {
 	//EVENTO PARA ELIMINAR
 				$("#Carrito").on("click",".eliminar", function(e) {
 					e.preventDefault();
-					$.post("../Controllers/EliminarController.php",{ index:$(this).parent().parent().attr("id") })
+					$.post(self.urlEliminar,{ index:$(this).closest("tr").attr("id") })
 					.done(function(result) {
-					var result = $.parseJSON(result);
-					//if(result.total == 0)
-						//$("#Carrito tbody").empty();
 					$(".total").remove();
 					$("#" + result.index).remove();
 					$("#Carrito tbody").append(

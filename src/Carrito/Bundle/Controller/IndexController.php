@@ -37,8 +37,6 @@ class indexController extends Controller {
 	
 	public function validarLoginAction() {
 		$peticion = Request::createFromGlobals();
-		
-		//equivale a $_POST[  ];
 		$nombre = $peticion->request->get("user");
 		$pass = $peticion->request->get("pass");
 				

@@ -28,19 +28,7 @@
  						alert("Ingrese contrasena");
  						return false;
  					}
-// 					$.post(self.urlLogin,{user: $("#user").val(), pass: $("#pass").val()})
-// 					.done(function(result) {
-////					var result = $.parseJSON(result);
-// 					if (result == 1)
-// 						$.post(self.urlHome);
-// 					else
-// 						alert("datos incorrectos"); 																	
-// 					})
-// 					.fail(function (result) {
-// 				
-//					alert("error en el servidor");
-//					return false;
-// 					});
+
 			});			
 			
 		}

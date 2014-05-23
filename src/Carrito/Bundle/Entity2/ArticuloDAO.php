@@ -93,24 +93,14 @@ class ArticuloDAO{
 
 	public function obtenerArrayArticulos($nroPagina) {
 		$indiceInicial = $this->articulosXPagina * ($nroPagina - 1);
-		//nombre, precioUnitario, id
 		$array = array();
-		for ($i = $indiceInicial;$i < $indiceInicial + $this->articulosXPagina; $i++)
-		{
-				
-			if ($i < count($this->listadoArticulos) )
-			{
-				$articulo = $this->listadoArticulos[$i];
-				$array[$i - $indiceInicial] =
-				array(
-						"nombre" => $articulo->__get("nombre"),
-						"precioUnitario" => $articulo->__get("precioUnitario"),
-						"id" => $articulo->__get("id")
-				);
-			}
-			else
+		$i=0;
+		foreach ($this->listadoArticulos as $articulo) {
+			if (($i >= $indiceInicial) && ($i < $indiceInicial + $this->articulosXPagina))
+				$array[$i - $indiceInicial] = array("nombre" => $articulo->__get("nombre"),"precioUnitario" => $articulo->__get("precioUnitario"),"id" => $articulo->__get("id"));
+			else if ($i >= $indiceInicial + $this->articulosXPagina)
 				break;
-				
+			$i++;				
 		}
 		return array("articulos" => $array);
 	}

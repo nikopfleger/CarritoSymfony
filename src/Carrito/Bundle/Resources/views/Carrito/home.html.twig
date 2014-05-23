@@ -7,7 +7,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Catalogo</a></li>
-        <li><a href="../Controllers/cargarABMController.php" id="accesoABM">ABM</a></li>
+        <li><a href="{{ path("home_cargar_ABM") }}" id="accesoABM">ABM</a></li>
         </ul>
     </div>
   </div>
@@ -64,10 +64,12 @@
 	<ul class="pagination">
 		<li><a href="#" id="primeraPagina">&laquo;</a></li>	
 		{% set j=1 %}
+		{% set a = j %}
 		{% for j in 1.. articuloDAO.numeroPaginas %}
 		 <li><a href='#' class='pagina' id='{{ j }}'>{{ j }}</a></li>
+		 {% set a = j %}
 		 {% endfor %}
-		 <li><a href='#' id='ultimaPagina' name='{{ j-1 }}'>&raquo;</a></li>			
+		 <li><a href='#' id='ultimaPagina' name='{{ a }}'>&raquo;</a></li>			
 	</ul>
 </div>
 
@@ -80,25 +82,13 @@
 
 <script src=" {{ asset("bundles/carrito/js/home.js") }}"></script>
 <script type="text/javascript">
-		function parsearArrayArticulos(result) { 
-			 var string = "";
-					for (var i=0; i<result.articulos.length;i++)
-					{
-						string = string + "<tr><td>" +
-						result.articulos[i].nombre + 
-						"</td><td>" + result.articulos[i].precioUnitario +
-						"</td><td><a href='#' class='agregar'>Agregar</a>" + 
-						"<input type='hidden' name='id' value='" + 
-						result.articulos[i].id + "'> </td></tr>";
-					}
-					return string;
-		}
+
 		$(document).ready(function(e) {
 				var unHome = new Home();
-				unHome.urlCambiarPagina= "{{ path("home_cambiarPagina") }}"
+				unHome.urlCambiarPagina= "{{ path('home_cambiarPagina') }}";
+				unHome.urlAgregar= " {{ path('home_agregar_carrito') }}" ;
+				unHome.urlEliminar= " {{ path('home_eliminar_carrito') }}";
 				unHome.init();
-// 				urlAgregar:"",
-// 				urlEliminar:"",			
 		});
 
 
