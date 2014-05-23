@@ -67,4 +67,15 @@ use Carrito\Bundle\Entity2\ArticuloCarrito;
  		return new Response("");
  	}
  	
+ 	/**
+ 	 * @Route("/cerrarSesionABM", name="abm_cerrar_sesion")
+ 	 * @Template()
+ 	 */
+ 	public function cerrarSesionAction() {
+ 		$session = $this->getRequest()->getSession();
+ 		$session->invalidate(); 		
+ 		return $this->forward("CarritoBundle:index:index");
+ 	}
+ 	
+ 	
  }

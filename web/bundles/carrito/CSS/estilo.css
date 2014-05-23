@@ -20,6 +20,11 @@ body
 	padding:30px;
 } */
 
+.cerrarSesion {
+	align:right;
+	text-align:right;
+}
+
 .divABM {
  position:fixed;
  width:50%;	

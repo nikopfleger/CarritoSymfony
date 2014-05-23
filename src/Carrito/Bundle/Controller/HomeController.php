@@ -80,6 +80,19 @@ class HomeController extends Controller {
 	public function cargarABMAction() {
 		return $this->forward("CarritoBundle:ABM:indexABM");
 	}
+	
+
+	/**
+	 * @Route("/cerrarSesionHome", name="home_cerrar_sesion")
+	 * @Template()
+	 */
+	public function cerrarSesionAction() {
+		$session = $this->getRequest()->getSession();
+		$session->invalidate();
+		return $this->forward("CarritoBundle:index:index");
+	}
+	
+	
 
 
 

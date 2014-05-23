@@ -155,6 +155,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Carrito\\Bundle\\Controller\\ABMController::eliminarCatalogoAction',  '_route' => 'abm_eliminar_catalogo',);
         }
 
+        // abm_cerrar_sesion
+        if ($pathinfo === '/cerrarSesionABM') {
+            return array (  '_controller' => 'Carrito\\Bundle\\Controller\\ABMController::cerrarSesionAction',  '_route' => 'abm_cerrar_sesion',);
+        }
+
         // _home
         if ($pathinfo === '/home') {
             return array (  '_controller' => 'Carrito\\Bundle\\Controller\\HomeController::homeAction',  '_route' => '_home',);
@@ -175,9 +180,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Carrito\\Bundle\\Controller\\HomeController::eliminarDeCarritoAction',  '_route' => 'home_eliminar_carrito',);
         }
 
-        // home_cargar_ABM
-        if ($pathinfo === '/cargarabm') {
-            return array (  '_controller' => 'Carrito\\Bundle\\Controller\\HomeController::cargarABMAction',  '_route' => 'home_cargar_ABM',);
+        if (0 === strpos($pathinfo, '/c')) {
+            // home_cargar_ABM
+            if ($pathinfo === '/cargarabm') {
+                return array (  '_controller' => 'Carrito\\Bundle\\Controller\\HomeController::cargarABMAction',  '_route' => 'home_cargar_ABM',);
+            }
+
+            // home_cerrar_sesion
+            if ($pathinfo === '/cerrarSesionHome') {
+                return array (  '_controller' => 'Carrito\\Bundle\\Controller\\HomeController::cerrarSesionAction',  '_route' => 'home_cerrar_sesion',);
+            }
+
         }
 
         // index

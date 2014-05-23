@@ -41,7 +41,12 @@ class __TwigTemplate_6c8fa87201553d37e34502571c7991b06fa451b5f4c8aae2d957e4a3ccf
         // line 9
         echo $this->env->getExtension('routing')->getPath("abm_cargar_catalogo");
         echo "\">Catalogo</a></li>
-        <li class=\"active\"><a href=\"#\">ABM</a></li>
+        <li class=\"active\"><a href=\"#\">ABM</a></li> 
+        <li><a href=\"";
+        // line 11
+        echo $this->env->getExtension('routing')->getPath("abm_cerrar_sesion");
+        echo "\">Cerrar Sesion</a>
+
         </ul>
     </div>
   </div>
@@ -50,21 +55,21 @@ class __TwigTemplate_6c8fa87201553d37e34502571c7991b06fa451b5f4c8aae2d957e4a3ccf
 
 
 ";
-        // line 18
+        // line 20
         $this->displayBlock('titulo', $context, $blocks);
     }
 
     public function block_titulo($context, array $blocks = array())
     {
-        // line 19
+        // line 21
         echo "<title> ABM Catalogo </title>
 ";
     }
 
-    // line 23
+    // line 25
     public function block_body($context, array $blocks = array())
     {
-        // line 24
+        // line 26
         echo "
 <div class=\"formulario\">
 <input type=\"hidden\" id=\"idArticulo\" value=\"\">
@@ -91,10 +96,10 @@ class __TwigTemplate_6c8fa87201553d37e34502571c7991b06fa451b5f4c8aae2d957e4a3ccf
 ";
     }
 
-    // line 49
+    // line 51
     public function block_javascript($context, array $blocks = array())
     {
-        // line 50
+        // line 52
         echo "<script src=\" ";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/carrito/js/abm.js"), "html", null, true);
         echo "\"></script>
@@ -103,17 +108,17 @@ class __TwigTemplate_6c8fa87201553d37e34502571c7991b06fa451b5f4c8aae2d957e4a3ccf
 
 \t\tvar unABM = new ABM();
 \t\tunABM.table = ";
-        // line 55
+        // line 57
         echo (isset($context["tablaArt"]) ? $context["tablaArt"] : $this->getContext($context, "tablaArt"));
         echo " ;
 \t\tunABM.row = \"\";
 \t\tunABM.oTable = null;
 \t\tunABM.url.actualizar = \"";
-        // line 58
+        // line 60
         echo $this->env->getExtension('routing')->getPath("abm_actualizar_catalogo");
         echo "\";
 \t\tunABM.url.eliminar = \"";
-        // line 59
+        // line 61
         echo $this->env->getExtension('routing')->getPath("abm_eliminar_catalogo");
         echo "\";
 \t\tunABM.init();
@@ -135,6 +140,6 @@ class __TwigTemplate_6c8fa87201553d37e34502571c7991b06fa451b5f4c8aae2d957e4a3ccf
 
     public function getDebugInfo()
     {
-        return array (  117 => 59,  113 => 58,  107 => 55,  98 => 50,  95 => 49,  68 => 24,  65 => 23,  60 => 19,  54 => 18,  42 => 9,  34 => 3,  31 => 2,);
+        return array (  122 => 61,  118 => 60,  112 => 57,  103 => 52,  100 => 51,  73 => 26,  70 => 25,  65 => 21,  59 => 20,  47 => 11,  42 => 9,  34 => 3,  31 => 2,);
     }
 }

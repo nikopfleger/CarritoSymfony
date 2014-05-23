@@ -8,6 +8,8 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Catalogo</a></li>
         <li><a href="{{ path("home_cargar_ABM") }}" id="accesoABM">ABM</a></li>
+        <li><a href="{{ path("home_cerrar_sesion")}}">Cerrar Sesion</a>
+        </div>
         </ul>
     </div>
   </div>
@@ -65,10 +67,12 @@
 		<li><a href="#" id="primeraPagina">&laquo;</a></li>	
 		{% set j=1 %}
 		{% set a = j %}
+		{% if articuloDAO.numeroPaginas > 0 %}
 		{% for j in 1.. articuloDAO.numeroPaginas %}
 		 <li><a href='#' class='pagina' id='{{ j }}'>{{ j }}</a></li>
 		 {% set a = j %}
 		 {% endfor %}
+		 {% endif %}
 		 <li><a href='#' id='ultimaPagina' name='{{ a }}'>&raquo;</a></li>			
 	</ul>
 </div>

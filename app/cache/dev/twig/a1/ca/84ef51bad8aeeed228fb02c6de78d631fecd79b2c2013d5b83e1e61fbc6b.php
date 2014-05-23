@@ -42,6 +42,11 @@ class __TwigTemplate_a1ca84ef51bad8aeeed228fb02c6de78d631fecd79b2c2013d5b83e1e61
         // line 10
         echo $this->env->getExtension('routing')->getPath("home_cargar_ABM");
         echo "\" id=\"accesoABM\">ABM</a></li>
+        <li><a href=\"";
+        // line 11
+        echo $this->env->getExtension('routing')->getPath("home_cerrar_sesion");
+        echo "\">Cerrar Sesion</a>
+        </div>
         </ul>
     </div>
   </div>
@@ -50,24 +55,24 @@ class __TwigTemplate_a1ca84ef51bad8aeeed228fb02c6de78d631fecd79b2c2013d5b83e1e61
 
 
 ";
-        // line 18
+        // line 20
         $this->displayBlock('titulo', $context, $blocks);
     }
 
     public function block_titulo($context, array $blocks = array())
     {
-        // line 19
+        // line 21
         echo "<title> Bienvenido a su carrito </title>
 ";
     }
 
-    // line 23
+    // line 25
     public function block_body($context, array $blocks = array())
     {
-        // line 24
+        // line 26
         echo "<div class=\"bordeCarrito\">
 \t\t<i class=\"fa fa-shopping-cart\"></i> Carrito de ";
-        // line 25
+        // line 27
         echo twig_escape_filter($this->env, (isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "html", null, true);
         echo "
 \t\t<table id=\"Carrito\" class=\"elCarrito table table-hover table-condensed\">
@@ -96,74 +101,80 @@ class __TwigTemplate_a1ca84ef51bad8aeeed228fb02c6de78d631fecd79b2c2013d5b83e1e61
 \t\t\t\t</tr>
 \t\t\t</thead>
 \t\t";
-        // line 51
+        // line 53
         $context["i"] = 0;
-        // line 52
+        // line 54
         echo "\t\t";
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable(range(0, ($this->getAttribute((isset($context["articuloDAO"]) ? $context["articuloDAO"] : $this->getContext($context, "articuloDAO")), "articulosXPagina") - 1)));
         foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-            // line 53
+            // line 55
             echo "\t\t\t";
             if (((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) < twig_length_filter($this->env, $this->getAttribute((isset($context["articuloDAO"]) ? $context["articuloDAO"] : $this->getContext($context, "articuloDAO")), "listadoArticulos")))) {
-                // line 54
+                // line 56
                 echo "\t\t\t\t";
                 $context["articulo"] = $this->getAttribute($this->getAttribute((isset($context["articuloDAO"]) ? $context["articuloDAO"] : $this->getContext($context, "articuloDAO")), "listadoArticulos"), (isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")), array(), "array");
-                // line 55
+                // line 57
                 echo "\t\t\t\t<tr><td>";
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : $this->getContext($context, "articulo")), "nombre"), "html", null, true);
                 echo "</td>
 \t\t\t\t<td>";
-                // line 56
+                // line 58
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : $this->getContext($context, "articulo")), "precioUnitario"), "html", null, true);
                 echo "</td>
 \t\t\t\t<td><a href='#' class='agregar'>Agregar</a>
 \t\t\t\t<input type= 'hidden' name='id' value='";
-                // line 58
+                // line 60
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : $this->getContext($context, "articulo")), "id"), "html", null, true);
                 echo "'>
 \t\t\t\t</td></tr>
 \t\t\t";
             }
-            // line 60
+            // line 62
             echo "\t\t\t
 \t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 62
+        // line 64
         echo "\t\t</table>
 \t\t
 \t<ul class=\"pagination\">
 \t\t<li><a href=\"#\" id=\"primeraPagina\">&laquo;</a></li>\t
 \t\t";
-        // line 66
+        // line 68
         $context["j"] = 1;
-        // line 67
+        // line 69
         echo "\t\t";
         $context["a"] = (isset($context["j"]) ? $context["j"] : $this->getContext($context, "j"));
-        // line 68
+        // line 70
         echo "\t\t";
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable(range(1, $this->getAttribute((isset($context["articuloDAO"]) ? $context["articuloDAO"] : $this->getContext($context, "articuloDAO")), "numeroPaginas")));
-        foreach ($context['_seq'] as $context["_key"] => $context["j"]) {
-            // line 69
-            echo "\t\t <li><a href='#' class='pagina' id='";
-            echo twig_escape_filter($this->env, (isset($context["j"]) ? $context["j"] : $this->getContext($context, "j")), "html", null, true);
-            echo "'>";
-            echo twig_escape_filter($this->env, (isset($context["j"]) ? $context["j"] : $this->getContext($context, "j")), "html", null, true);
-            echo "</a></li>
-\t\t ";
-            // line 70
-            $context["a"] = (isset($context["j"]) ? $context["j"] : $this->getContext($context, "j"));
+        if (($this->getAttribute((isset($context["articuloDAO"]) ? $context["articuloDAO"] : $this->getContext($context, "articuloDAO")), "numeroPaginas") > 0)) {
             // line 71
+            echo "\t\t";
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable(range(1, $this->getAttribute((isset($context["articuloDAO"]) ? $context["articuloDAO"] : $this->getContext($context, "articuloDAO")), "numeroPaginas")));
+            foreach ($context['_seq'] as $context["_key"] => $context["j"]) {
+                // line 72
+                echo "\t\t <li><a href='#' class='pagina' id='";
+                echo twig_escape_filter($this->env, (isset($context["j"]) ? $context["j"] : $this->getContext($context, "j")), "html", null, true);
+                echo "'>";
+                echo twig_escape_filter($this->env, (isset($context["j"]) ? $context["j"] : $this->getContext($context, "j")), "html", null, true);
+                echo "</a></li>
+\t\t ";
+                // line 73
+                $context["a"] = (isset($context["j"]) ? $context["j"] : $this->getContext($context, "j"));
+                // line 74
+                echo "\t\t ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['j'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 75
             echo "\t\t ";
         }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['j'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 72
+        // line 76
         echo "\t\t <li><a href='#' id='ultimaPagina' name='";
         echo twig_escape_filter($this->env, (isset($context["a"]) ? $context["a"] : $this->getContext($context, "a")), "html", null, true);
         echo "'>&raquo;</a></li>\t\t\t
@@ -173,16 +184,16 @@ class __TwigTemplate_a1ca84ef51bad8aeeed228fb02c6de78d631fecd79b2c2013d5b83e1e61
 ";
     }
 
-    // line 78
+    // line 82
     public function block_javascript($context, array $blocks = array())
     {
-        // line 79
+        // line 83
         echo "
 
 
 
 <script src=\" ";
-        // line 83
+        // line 87
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/carrito/js/home.js"), "html", null, true);
         echo "\"></script>
 <script type=\"text/javascript\">
@@ -190,15 +201,15 @@ class __TwigTemplate_a1ca84ef51bad8aeeed228fb02c6de78d631fecd79b2c2013d5b83e1e61
 \t\t\$(document).ready(function(e) {
 \t\t\t\tvar unHome = new Home();
 \t\t\t\tunHome.urlCambiarPagina= \"";
-        // line 88
+        // line 92
         echo $this->env->getExtension('routing')->getPath("home_cambiarPagina");
         echo "\";
 \t\t\t\tunHome.urlAgregar= \" ";
-        // line 89
+        // line 93
         echo $this->env->getExtension('routing')->getPath("home_agregar_carrito");
         echo "\" ;
 \t\t\t\tunHome.urlEliminar= \" ";
-        // line 90
+        // line 94
         echo $this->env->getExtension('routing')->getPath("home_eliminar_carrito");
         echo "\";
 \t\t\t\tunHome.init();
@@ -221,6 +232,6 @@ class __TwigTemplate_a1ca84ef51bad8aeeed228fb02c6de78d631fecd79b2c2013d5b83e1e61
 
     public function getDebugInfo()
     {
-        return array (  202 => 90,  198 => 89,  194 => 88,  186 => 83,  180 => 79,  177 => 78,  167 => 72,  161 => 71,  159 => 70,  152 => 69,  147 => 68,  144 => 67,  142 => 66,  136 => 62,  129 => 60,  123 => 58,  118 => 56,  113 => 55,  110 => 54,  107 => 53,  102 => 52,  100 => 51,  71 => 25,  68 => 24,  65 => 23,  60 => 19,  54 => 18,  43 => 10,  34 => 3,  31 => 2,);
+        return array (  213 => 94,  209 => 93,  205 => 92,  197 => 87,  191 => 83,  188 => 82,  178 => 76,  175 => 75,  169 => 74,  167 => 73,  160 => 72,  155 => 71,  152 => 70,  149 => 69,  147 => 68,  141 => 64,  134 => 62,  128 => 60,  123 => 58,  118 => 57,  115 => 56,  112 => 55,  107 => 54,  105 => 53,  76 => 27,  73 => 26,  70 => 25,  65 => 21,  59 => 20,  47 => 11,  43 => 10,  34 => 3,  31 => 2,);
     }
 }
