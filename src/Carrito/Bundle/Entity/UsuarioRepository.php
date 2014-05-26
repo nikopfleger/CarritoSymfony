@@ -16,16 +16,7 @@ class UsuarioRepository extends EntityRepository {
 	
 	public function validarUsuario($user,$pass)
 	{
-		//si uso findBy o findOneBy no uso getEntityManager
-// 		return $this->getEntityManager()
 		return $this->findOneBy(array("nombre" => $user,"pass" => $pass));
-		
-		//PARA ENTITY MANAGER
-// 		->createQueryBuilder('u')
-// 		->where('u.nombre = :nombre and u.pass = :pass')
-// 		->setParameter('nombre',$user)
-//      	->setParameter('pass',$pass)
-//      	->getQuery();
 	}
 	
 }
