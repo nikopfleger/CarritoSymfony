@@ -51,11 +51,11 @@
 				</tr>
 			</thead>
 		{% set i = 0 %}
-		{% for i in 0.. (articuloDAO.articulosXPagina-1) %}
-			{% if i < articuloDAO.listadoArticulos|length %}
-				{% set articulo = articuloDAO.listadoArticulos[i] %}
+		{% for i in 0.. (ARTICULOS_X_PAGINA-1) %}
+			{% if i < catalogo|length %}
+				{% set articulo = catalogo[i] %}
 				<tr><td>{{  articulo.nombre  }}</td>
-				<td>{{articulo.precioUnitario}}</td>
+				<td>{{ articulo.precio }}</td>
 				<td><a href='#' class='agregar'>Agregar</a>
 				<input type= 'hidden' name='id' value='{{ articulo.id }}'>
 				</td></tr>
@@ -67,8 +67,8 @@
 		<li><a href="#" id="primeraPagina">&laquo;</a></li>	
 		{% set j=1 %}
 		{% set a = j %}
-		{% if articuloDAO.numeroPaginas > 0 %}
-		{% for j in 1.. articuloDAO.numeroPaginas %}
+		{% if catalogo|length > 0 %}
+		{% for j in 1.. cantPag %}
 		 <li><a href='#' class='pagina' id='{{ j }}'>{{ j }}</a></li>
 		 {% set a = j %}
 		 {% endfor %}

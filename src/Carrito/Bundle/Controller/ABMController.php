@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Carrito\Bundle\Entity2\ArticuloDAO;
 use Carrito\Bundle\Entity2\Carrito;
 use Carrito\Bundle\Entity2\UsuarioDAO;
@@ -73,7 +74,7 @@ use Carrito\Bundle\Entity2\ArticuloCarrito;
  	 */
  	public function cerrarSesionAction() {
  		$session = $this->getRequest()->getSession();
- 		$session->invalidate(); 		
+ 	    $session->invalidate();
  		return $this->forward("CarritoBundle:index:index");
  	}
  	

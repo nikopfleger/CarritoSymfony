@@ -59,10 +59,6 @@ class ArticuloDAO{
 
 	}
 
-// 	public function getArticulos(){
-// 		return $this->listadoArticulos;
-// 	}
-
 	public function getArticuloByID($id){
 		foreach($this->listadoArticulos as $articulo){
 			if($articulo->__get("id") == $id)

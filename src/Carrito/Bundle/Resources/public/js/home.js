@@ -18,7 +18,7 @@ function Home() {
 					{
 						string = string + "<tr><td>" +
 						result.articulos[i].nombre + 
-						"</td><td>" + result.articulos[i].precioUnitario +
+						"</td><td>" + result.articulos[i].precio +
 						"</td><td><a href='#' class='agregar'>Agregar</a>" + 
 						"<input type='hidden' name='id' value='" + 
 						result.articulos[i].id + "'> </td></tr>";
@@ -88,7 +88,6 @@ function Home() {
 					cantidadSolicitada = prompt("Ingrese cantidad");	
 					$.post(self.urlAgregar,{cantidad: cantidadSolicitada, id:$(this).siblings().val(), idCompra: self.idCompra})
 					.done(function(result) {
-//						result = $.parseJSON(result);
 						precioAgregar = result.cantidad * result.precio;
 						$(".total").remove();		
 						$("#Carrito tbody").append("<tr id='"+ self.idCompra++  +"' ><td>" + 

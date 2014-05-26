@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Carrito\Bundle\Entity\ArticuloRepository;
 use Carrito\Bundle\Entity2\ArticuloDAO;
 use Carrito\Bundle\Entity2\Carrito;
 use Carrito\Bundle\Entity2\UsuarioDAO;
@@ -23,7 +25,16 @@ class HomeController extends Controller {
  */
 	public function homeAction() {
 		$session = $this->getRequest()->getSession();
-		return $this->render("CarritoBundle:Carrito:home.html.twig",array("articuloDAO" => $session->get("articuloDAO"),"user" => $session->get("user")));
+		$em = $this->getDoctrine()->getManager();
+		$articulos = $em->getRepository("CarritoBundle:Articulo")->findAll();
+		$cantPag = ceil((float) count($articulos) / ArticuloRepository::ARTICULOS_X_PAGINA);
+		return $this->render("CarritoBundle:Carrito:home.html.twig",
+				array(
+				"catalogo" => $articulos,
+				"user" => $session->get("user"),
+				"ARTICULOS_X_PAGINA" => ArticuloRepository::ARTICULOS_X_PAGINA,
+				"cantPag" => $cantPag)
+		        );
 	}
 	
 	/**
@@ -35,7 +46,9 @@ class HomeController extends Controller {
 		$peticion = Request::createFromGlobals();
 		$session = $this->getRequest()->getSession();
 		$nroPagina = $peticion->request->get("pagina");
-		return new JsonResponse($session->get("articuloDAO")->obtenerArrayArticulos($nroPagina));	
+		$em = $this->getDoctrine()->getManager();
+		$nuevaPagina = $em->getRepository("CarritoBundle:Articulo")->obtenerPagina($nroPagina);
+		return new JsonResponse($nuevaPagina);	
 	}
 	
 	/**
@@ -48,11 +61,13 @@ class HomeController extends Controller {
 		$idArt = $peticion->request->get("id");
 		$cantArt = $peticion->request->get("cantidad");
 		$idCompra = $peticion->request->get("idCompra");
-		$artDAO = $session->get("articuloDAO");
+		//FIND BY ID,
+		$em = $this->getDoctrine()->getManager();
+		$articuloAgregar = $em->getRepository("CarritoBundle:Articulo")->findOneById($idArt);
 		$articuloAEnviar = new ArticuloCarrito(
 				$idArt,
-				$artDAO->getArticuloByID($idArt)->__get("nombre"),
-				$artDAO->getArticuloByID($idArt)->__get("precioUnitario"),
+				$articuloAgregar->getNombre(),
+				$articuloAgregar->getPrecio(),
 				$cantArt,
 				$idCompra);
 		$session->get("carrito")->agregarArticulo($articuloAEnviar);

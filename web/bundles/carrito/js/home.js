@@ -18,7 +18,7 @@ function Home() {
 					{
 						string = string + "<tr><td>" +
 						result.articulos[i].nombre + 
-						"</td><td>" + result.articulos[i].precioUnitario +
+						"</td><td>" + result.articulos[i].precio +
 						"</td><td><a href='#' class='agregar'>Agregar</a>" + 
 						"<input type='hidden' name='id' value='" + 
 						result.articulos[i].id + "'> </td></tr>";

@@ -106,21 +106,21 @@ class __TwigTemplate_a1ca84ef51bad8aeeed228fb02c6de78d631fecd79b2c2013d5b83e1e61
         // line 54
         echo "\t\t";
         $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable(range(0, ($this->getAttribute((isset($context["articuloDAO"]) ? $context["articuloDAO"] : $this->getContext($context, "articuloDAO")), "articulosXPagina") - 1)));
+        $context['_seq'] = twig_ensure_traversable(range(0, ((isset($context["ARTICULOS_X_PAGINA"]) ? $context["ARTICULOS_X_PAGINA"] : $this->getContext($context, "ARTICULOS_X_PAGINA")) - 1)));
         foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
             // line 55
             echo "\t\t\t";
-            if (((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) < twig_length_filter($this->env, $this->getAttribute((isset($context["articuloDAO"]) ? $context["articuloDAO"] : $this->getContext($context, "articuloDAO")), "listadoArticulos")))) {
+            if (((isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")) < twig_length_filter($this->env, (isset($context["catalogo"]) ? $context["catalogo"] : $this->getContext($context, "catalogo"))))) {
                 // line 56
                 echo "\t\t\t\t";
-                $context["articulo"] = $this->getAttribute($this->getAttribute((isset($context["articuloDAO"]) ? $context["articuloDAO"] : $this->getContext($context, "articuloDAO")), "listadoArticulos"), (isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")), array(), "array");
+                $context["articulo"] = $this->getAttribute((isset($context["catalogo"]) ? $context["catalogo"] : $this->getContext($context, "catalogo")), (isset($context["i"]) ? $context["i"] : $this->getContext($context, "i")), array(), "array");
                 // line 57
                 echo "\t\t\t\t<tr><td>";
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : $this->getContext($context, "articulo")), "nombre"), "html", null, true);
                 echo "</td>
 \t\t\t\t<td>";
                 // line 58
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : $this->getContext($context, "articulo")), "precioUnitario"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["articulo"]) ? $context["articulo"] : $this->getContext($context, "articulo")), "precio"), "html", null, true);
                 echo "</td>
 \t\t\t\t<td><a href='#' class='agregar'>Agregar</a>
 \t\t\t\t<input type= 'hidden' name='id' value='";
@@ -150,11 +150,11 @@ class __TwigTemplate_a1ca84ef51bad8aeeed228fb02c6de78d631fecd79b2c2013d5b83e1e61
         $context["a"] = (isset($context["j"]) ? $context["j"] : $this->getContext($context, "j"));
         // line 70
         echo "\t\t";
-        if (($this->getAttribute((isset($context["articuloDAO"]) ? $context["articuloDAO"] : $this->getContext($context, "articuloDAO")), "numeroPaginas") > 0)) {
+        if ((twig_length_filter($this->env, (isset($context["catalogo"]) ? $context["catalogo"] : $this->getContext($context, "catalogo"))) > 0)) {
             // line 71
             echo "\t\t";
             $context['_parent'] = (array) $context;
-            $context['_seq'] = twig_ensure_traversable(range(1, $this->getAttribute((isset($context["articuloDAO"]) ? $context["articuloDAO"] : $this->getContext($context, "articuloDAO")), "numeroPaginas")));
+            $context['_seq'] = twig_ensure_traversable(range(1, (isset($context["cantPag"]) ? $context["cantPag"] : $this->getContext($context, "cantPag"))));
             foreach ($context['_seq'] as $context["_key"] => $context["j"]) {
                 // line 72
                 echo "\t\t <li><a href='#' class='pagina' id='";
