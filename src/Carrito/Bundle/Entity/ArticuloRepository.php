@@ -37,4 +37,5 @@ class ArticuloRepository extends EntityRepository
 		}
 		return array("articulos" => $array);
 	}
+
 }

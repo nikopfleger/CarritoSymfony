@@ -13,8 +13,9 @@ use Carrito\Bundle\Entity2\ArticuloDAO;
 use Carrito\Bundle\Entity2\Carrito;
 use Carrito\Bundle\Entity2\UsuarioDAO;
 use Carrito\Bundle\Entity2\Usuario;
-use Carrito\Bundle\Entity2\Articulo;
+use Carrito\Bundle\Entity\Articulo;
 use Carrito\Bundle\Entity2\ArticuloCarrito;
+use Carrito\Bundle\Entity\Serializador;
  
  class ABMController extends Controller {
  	/**
@@ -26,7 +27,14 @@ use Carrito\Bundle\Entity2\ArticuloCarrito;
  	{
  		$peticion = Request::createFromGlobals();
  		$session = $this->getRequest()->getSession();
- 		return $this->render("CarritoBundle:Carrito:abmcatalogo.html.twig",array( "tablaArt" => json_encode($session->get("articuloDAO")->articulosToJson()) ) ); 	
+ 		$em = $this->getDoctrine()->getManager();
+ 		$serializador = $this->get("Serializador");
+ 		return $this->render(
+ 				"CarritoBundle:Carrito:abmcatalogo.html.twig",
+ 				array(
+ 				"tablaArt" => $serializador->toJson($em->getRepository("CarritoBundle:Articulo")->findAll())
+ 				)
+ 		 ); 	
  	}
  	
  	/**
@@ -44,14 +52,37 @@ use Carrito\Bundle\Entity2\ArticuloCarrito;
  	 */
  	public function actualizarCatalogoAction() {
  		$peticion = Request::createFromGlobals();
- 		$session = $this->getRequest()->getSession();
- 		$articulo = new Articulo(
- 			$peticion->request->get("id"),
- 			$peticion->request->get("nombre"),
- 			$peticion->request->get("precio"),
- 			$peticion->request->get("cantidad")
- 		);
- 		return new JsonResponse($session->get("articuloDAO")->actualizarDAO($articulo));
+ 		$articulo = new Articulo();
+ 		$id = $peticion->request->get("id");
+ 		$nombre = $peticion->request->get("nombre");
+ 		$precio = $peticion->request->get("precio");
+ 		$cantidad = $peticion->request->get("cantidad");
+ 		$articulo->setId($id);
+ 		$articulo->setNombre($nombre);
+ 		$articulo->setPrecio($precio);
+ 		$articulo->setCantidad($cantidad);
+ 		
+ 		
+ 		
+ 		$em = $this->getDoctrine()->getManager();
+ 		$lastID = $em->createQuery('SELECT MAX(p.id) FROM CarritoBundle:Articulo p')->getSingleResult();
+	
+ 		
+ 		if ($id == "")
+ 		{
+ 			$em->persist($articulo);
+ 			$array = array("id" => $lastID[1] + 1,"newID" => true);
+ 		}
+ 		else
+ 		{
+ 			$artEditado = $em->getRepository("CarritoBundle:Articulo")->findOneById($id);
+ 			$artEditado->setNombre($nombre);
+ 			$artEditado->setPrecio($precio);
+ 			$artEditado->setCantidad($cantidad);
+ 			$array = array("id" => $id,"newID" => false);
+ 		} 		
+ 		$em->flush();
+ 		return new JsonResponse($array);
  	}
  	
  	/**
@@ -61,10 +92,11 @@ use Carrito\Bundle\Entity2\ArticuloCarrito;
  	 */
  	public function eliminarCatalogoAction() {
  		$peticion = Request::createFromGlobals();
- 		$session = $this->getRequest()->getSession();
  		$id = $peticion->request->get("id");
- 		$rownum = $peticion->request->get("rownum");
- 		$session->get("articuloDAO")->eliminarByID($id);
+ 		$em = $this->getDoctrine()->getManager();
+ 		$archivo = $em->getRepository("CarritoBundle:Articulo")->findOneById($id);
+ 		$em->remove($archivo);
+ 		$em->flush();
  		return new Response("");
  	}
  	

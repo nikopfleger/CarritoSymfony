@@ -569,6 +569,7 @@
     <parameter key="console.command.ids" type="collection"/>
   </parameters>
   <services>
+    <service id="serializador" class="Carrito\Bundle\Entity\Serializador"/>
     <service id="controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
       <argument type="service" id="kernel"/>

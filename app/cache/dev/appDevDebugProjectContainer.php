@@ -163,6 +163,7 @@ class appDevDebugProjectContainer extends Container
             'sensio_framework_extra.security.listener' => 'getSensioFrameworkExtra_Security_ListenerService',
             'sensio_framework_extra.view.guesser' => 'getSensioFrameworkExtra_View_GuesserService',
             'sensio_framework_extra.view.listener' => 'getSensioFrameworkExtra_View_ListenerService',
+            'serializador' => 'getSerializadorService',
             'service_container' => 'getServiceContainerService',
             'session' => 'getSessionService',
             'session.storage.filesystem' => 'getSession_Storage_FilesystemService',
@@ -2037,6 +2038,19 @@ class appDevDebugProjectContainer extends Container
     protected function getSensioFrameworkExtra_View_ListenerService()
     {
         return $this->services['sensio_framework_extra.view.listener'] = new \Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener($this);
+    }
+
+    /**
+     * Gets the 'serializador' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Carrito\Bundle\Entity\Serializador A Carrito\Bundle\Entity\Serializador instance.
+     */
+    protected function getSerializadorService()
+    {
+        return $this->services['serializador'] = new \Carrito\Bundle\Entity\Serializador();
     }
 
     /**

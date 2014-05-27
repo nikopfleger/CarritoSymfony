@@ -27,7 +27,7 @@ class HomeController extends Controller {
 		$session = $this->getRequest()->getSession();
 		$em = $this->getDoctrine()->getManager();
 		$articulos = $em->getRepository("CarritoBundle:Articulo")->findAll();
-		$cantPag = ceil((float) count($articulos) / ArticuloRepository::ARTICULOS_X_PAGINA);
+		$cantPag = $em->getRepository("CarritoBundle:Articulo")->numeroPaginas();
 		return $this->render("CarritoBundle:Carrito:home.html.twig",
 				array(
 				"catalogo" => $articulos,
@@ -44,7 +44,6 @@ class HomeController extends Controller {
 	 */
 	public function cambiarPaginaAction () {
 		$peticion = Request::createFromGlobals();
-		$session = $this->getRequest()->getSession();
 		$nroPagina = $peticion->request->get("pagina");
 		$em = $this->getDoctrine()->getManager();
 		$nuevaPagina = $em->getRepository("CarritoBundle:Articulo")->obtenerPagina($nroPagina);
